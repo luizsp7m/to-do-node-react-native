@@ -3,17 +3,15 @@ import { COLORS, FONTS } from "../../theme";
 
 export const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    paddingVertical: 16,
+    paddingHorizontal: 20,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    paddingBottom: 16,
   },
 
   text: {
-    fontSize: 15,
-    fontFamily: FONTS.REGULAR,
-    color: COLORS.WHITE,
+    fontSize: 16,
+    fontFamily: FONTS.BOLD,
+    color: COLORS.GRAY_SECONDARY,
   }
 });
