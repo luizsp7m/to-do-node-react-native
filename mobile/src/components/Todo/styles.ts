@@ -11,14 +11,25 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  type: {
+  done: {
+    opacity: 0.5,
+  },
 
+  type: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 
   typeText: {
     fontSize: 14,
     fontFamily: FONTS.BOLD,
     color: COLORS.WHITE,
+  },
+
+  typeImage: {
+    width: 40,
+    height: 40,
+    marginRight: 14,
   },
 
   when: {

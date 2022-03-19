@@ -13,5 +13,9 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: FONTS.BOLD,
     color: COLORS.GRAY_SECONDARY,
+  },
+
+  selected: {
+    color: COLORS.PINK,
   }
 });

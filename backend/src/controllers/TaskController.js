@@ -74,6 +74,7 @@ class TaskController {
   async late(req, res) {
     await TaskModel.find({
       "when": { "$lt": current },
+      "done": { "$eq": false },
       "macaddress": { "$in": req.params.macaddress },
     }).sort("when").then(response => {
       return res.status(200).json(response);

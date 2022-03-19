@@ -1,24 +1,40 @@
-import { ScrollView, View } from "react-native";
+import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { Task } from "../../screens/Home";
+import { COLORS } from "../../theme";
 import { Todo } from "../Todo";
 
 import { styles } from "./styles";
 
-export function TodoList() {
+interface TodoListProps {
+  tasks: Task[];
+  loading: boolean;
+  filter: string;
+}
+
+export function TodoList({ tasks, loading, filter }: TodoListProps) {
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.content}
-    >
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-    </ScrollView>
+    <>
+      <Text style={styles.title}>{filter === "late" ? "Tarefas atrasadas" : "Tarefas"}</Text>
+
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.content}
+      >
+        {loading ? (
+          <ActivityIndicator
+            color={COLORS.PINK}
+            size={30}
+          />
+        ) : (
+          tasks.map(task => (
+            <Todo
+              key={task._id}
+              task={task}
+            />
+          ))
+        )}
+
+      </ScrollView>
+    </>
   );
 }
