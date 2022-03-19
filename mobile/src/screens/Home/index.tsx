@@ -19,11 +19,19 @@ export interface Task {
   done: boolean;
 }
 
-export function Home() {
+interface HomeProps {
+  navigation: any;
+}
+
+export function Home({ navigation }: HomeProps) {
   const [filter, setFilter] = useState("today");
   const [tasks, setTasks] = useState<Task[]>([]);
   const [lateCount, setLateCount] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  function navigateToTask() {
+    navigation.navigate("Task");
+  }
 
   function onChangeFilter(slug: string) {
     setFilter(slug);
@@ -51,10 +59,28 @@ export function Home() {
 
   return (
     <View style={styles.container}>
-      <Header showQrCode={true} showNotification={true} onChangeFilter={onChangeFilter} lateCount={lateCount} />
-      <Filter filter={filter} onChangeFilter={onChangeFilter} />
-      <TodoList tasks={tasks} loading={loading} filter={filter} />
-      <Footer icon="add" />
+      <Header
+        showQrCode={true}
+        showNotification={true}
+        onChangeFilter={onChangeFilter}
+        lateCount={lateCount}
+      />
+
+      <Filter
+        filter={filter}
+        onChangeFilter={onChangeFilter}
+      />
+
+      <TodoList
+        tasks={tasks}
+        loading={loading}
+        filter={filter}
+      />
+
+      <Footer
+        icon="add"
+        navigateToTask={navigateToTask}
+      />
     </View>
   );
 }

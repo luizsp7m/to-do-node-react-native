@@ -15,9 +15,16 @@ interface HeaderProps {
   showNotification: boolean;
   onChangeFilter: (slug: string) => void;
   lateCount: number;
+  navigateToHome?: () => void;
 }
 
-export function Header({ showQrCode, showNotification, onChangeFilter, lateCount }: HeaderProps) {
+export function Header({
+  showQrCode,
+  showNotification,
+  onChangeFilter,
+  lateCount,
+  navigateToHome,
+}: HeaderProps) {
   return (
     <View style={styles.container}>
       {showQrCode ? (
@@ -28,7 +35,7 @@ export function Header({ showQrCode, showNotification, onChangeFilter, lateCount
           />
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigateToHome && navigateToHome()}>
           <Image
             source={IconLeftArrow}
             style={styles.arrow}

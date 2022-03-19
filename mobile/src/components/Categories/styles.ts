@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     opacity: 1,
   },
 
-  text: {
-    color: "red",
-  },
+  default: {
+    opacity: 1,
+  }
 });

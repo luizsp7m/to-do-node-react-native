@@ -6,10 +6,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 38,
     paddingBottom: 16,
-    backgroundColor: COLORS.BLACK_SECONDARY,
+    backgroundColor: COLORS.BLACK_PRIMARY,
     alignItems: "center",
     position: "relative",
-    borderTopColor: COLORS.BLACK_SECONDARY,
+    borderTopColor: COLORS.BLACK_TERTIARY,
     borderTopWidth: 4,
   },
 

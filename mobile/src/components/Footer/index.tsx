@@ -7,13 +7,14 @@ import IconConfirm from "../../assets/confirm.png";
 
 interface FooterProps {
   icon: "add" | "confirm";
+  navigateToTask?: () => void;
 }
 
-export function Footer({ icon }: FooterProps) {
+export function Footer({ icon, navigateToTask }: FooterProps) {
   return (
     <View style={styles.container}>
       {icon === "add" ? (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigateToTask && navigateToTask()}>
           <Image
             source={IconAdd}
             style={styles.icon}
@@ -28,7 +29,7 @@ export function Footer({ icon }: FooterProps) {
         </TouchableOpacity>
       )}
 
-      <Text style={styles.text}>Texto do Footer</Text>
+      <Text style={styles.text}>To do List - © Luiz Oliveira</Text>
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity } from "react-native";
 import { Icons } from "../../utils/icons";
 
@@ -6,10 +6,6 @@ import { styles } from "./styles";
 
 export function Categories() {
   const [typeSelected, setTypeSelected] = useState<number | undefined>();
-
-  useEffect(() => {
-    console.log(typeSelected);
-  }, [typeSelected]);
 
   return (
     <ScrollView

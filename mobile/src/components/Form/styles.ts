@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
     // flex: 1,
   },
 
+  content: {
+    paddingBottom: 50,
+  },
+
   group: {
     marginBottom: 24,
   },
@@ -60,5 +64,30 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: COLORS.WHITE,
     fontFamily: FONTS.BOLD,
+  },
+
+  inputDate: {
+    height: 44,
+    backgroundColor: COLORS.BLACK_TERTIARY,
+    borderRadius: 4,
+    padding: 12,
+    color: COLORS.WHITE,
+    flexDirection: "row",
+    alignItems: "center",
+    position: "relative",
+  },
+
+  buttonIcon: {
+    position: "absolute",
+    right: 15,
+  },
+
+  imageIcon: {
+    width: 20,
+    height: 20,
+  },
+
+  dateText: {
+    color: COLORS.WHITE,
   },
 });
