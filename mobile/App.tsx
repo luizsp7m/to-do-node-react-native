@@ -1,4 +1,7 @@
 import { Home } from "./src/screens/Home";
+import { Task } from "./src/screens/Task";
+import AppLoading from "expo-app-loading";
+import { StatusBar } from "expo-status-bar";
 
 import {
   useFonts, // usado para carregar as fontes
@@ -6,8 +9,6 @@ import {
   Roboto_700Bold
 } from "@expo-google-fonts/roboto";
 
-import AppLoading from "expo-app-loading";
-import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,7 +22,8 @@ export default function App() {
 
   return (
     <>
-      <Home />
+      {/* <Home /> */}
+      <Task />
       <StatusBar style="light" />
     </>
   );

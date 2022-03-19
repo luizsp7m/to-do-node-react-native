@@ -18,7 +18,7 @@ export function Todo({ task }: TodoProps) {
     <View style={[styles.container, task.done && styles.done]}> 
       <View style={styles.type}>
         <Image
-          source={Icons[task.type]}
+          source={Icons[task.type].image}
           style={styles.typeImage}
         />
         <Text style={styles.typeText}>{task.title}</Text>
