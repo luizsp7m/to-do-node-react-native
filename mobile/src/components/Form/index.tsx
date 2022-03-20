@@ -11,24 +11,26 @@ import IconClock from "../../assets/clock.png";
 import { styles } from "./styles";
 import { format } from "date-fns";
 import { api } from "../../services/api";
+import { Task } from "../../screens/Home";
 
 interface FormProps {
   navigateToHome: () => void;
+  task: Task | undefined;
 }
 
-export function Form({ navigateToHome }: FormProps) {
-  const [done, setDone] = useState(false);
+export function Form({ navigateToHome, task }: FormProps) {
+  const [done, setDone] = useState(task?.done);
 
   // Datapicker
   const [mode, setMode] = useState<any>("date");
   const [showPicker, setShowPicker] = useState(false);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(task ? new Date(task.when) : new Date());
 
   // Form
   const [macaddress, setMacaddress] = useState();
-  const [type, setType] = useState<number | undefined>();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [type, setType] = useState<number | undefined>(task ? task.type : undefined);
+  const [title, setTitle] = useState(task ? task.title : "");
+  const [description, setDescription] = useState(task ? task.description : "");
 
   function onChangeType(typeNumber: number) {
     setType(typeNumber);
@@ -51,19 +53,47 @@ export function Form({ navigateToHome }: FormProps) {
     if (!description) return alert("Defina a descrição da tarefa");
     if (!date) return alert("Defina a data da tarefa");
 
-    const task = {
+    const newTask = {
       macaddress: "00:00:5e:00:53:af",
       type,
       title,
       description,
+      done,
       when: date,
     }
 
-    await api.post("/task", task).then(response => {
+    if(task) { // atualizar tarefa
+      await api.put(`/task/${task._id}`, newTask).then(response => {
+        navigateToHome();
+        alert("Tarefa atualizada");
+      }).catch(error => {
+        console.log(error);
+      });
+
+    } else {
+      await api.post("/task", newTask).then(response => {
+        navigateToHome();
+        alert("Tarefa criada");
+      });
+    }
+  }
+
+  async function deleteTask() {
+    await api.delete(`/task/${task?._id}`).then(response => {
       navigateToHome();
+      alert("Tarefa excluida com sucesso");
     }).catch(error => {
-      console.log(error.message);
-    });
+      console.log(error);
+    })
+  }
+
+  async function doneTask() {
+    await api.put(`/task/${task?._id}/${done}`).then(response => {
+      navigateToHome();
+      alert("Status da tarefa atualizado");
+    }).catch(error => {
+      console.log(error);
+    })
   }
 
   return (
@@ -136,24 +166,30 @@ export function Form({ navigateToHome }: FormProps) {
         />
       )}
 
-      <View style={styles.inline}>
-        <View style={styles.switch}>
-          <Switch
-            onValueChange={() => setDone(!done)}
-            value={done}
-            thumbColor={done ? COLORS.PINK : COLORS.WHITE}
-            trackColor={{ false: COLORS.GRAY_TERTIARY, true: COLORS.GRAY_TERTIARY }}
-          />
-          <Text style={styles.switchLabel}>Concluído</Text>
+      {task && (
+        <View style={styles.inline}>
+          <View style={styles.switch}>
+            <Switch
+              onValueChange={() => setDone(!done)}
+              value={done}
+              thumbColor={done ? COLORS.PINK : COLORS.WHITE}
+              trackColor={{ false: COLORS.GRAY_TERTIARY, true: COLORS.GRAY_TERTIARY }}
+            />
+            <Text style={styles.switchLabel}>Concluído</Text>
+          </View>
+
+          <TouchableOpacity style={styles.button} onPress={() => deleteTask()}>
+            <Text style={styles.buttonText}>Excluir</Text>
+          </TouchableOpacity>
         </View>
+      )}
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Excluir</Text>
-        </TouchableOpacity>
-      </View>
-
-      <TouchableOpacity style={styles.buttonSubmit} activeOpacity={0.75} onPress={() => createTask()}>
-        <Text style={styles.textSubmit}>Adicionar tarefa</Text>
+      <TouchableOpacity
+        style={styles.buttonSubmit}
+        activeOpacity={0.75}
+        onPress={() => createTask()}
+      >
+        <Text style={styles.textSubmit}>{ task ? "Atualizar tarefa" : "Adicionar tarefa" }</Text>
       </TouchableOpacity>
     </ScrollView>
   );

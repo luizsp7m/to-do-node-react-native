@@ -14,30 +14,30 @@ import IconSport from "../assets/sport.png";
 // ];
 
 export const Icons = [{
-  id: 0,
+  id: 1,
   image: IconDefault,
 }, {
-  id: 1,
+  id: 2,
   image: IconFootball,
 }, {
-  id: 2,
+  id: 3,
   image: IconFood,
 }, {
-  id: 3,
+  id: 4,
   image: IconJob,
 }, {
-  id: 4,
+  id: 5,
   image: IconParty,
 }, {
-  id: 5,
+  id: 6,
   image: IconStudy,
 }, {
-  id: 6,
+  id: 7,
   image: IconShopping,
 }, {
-  id: 7,
+  id: 8,
   image: IconTravel,
 }, {
-  id: 8,
+  id: 9,
   image: IconSport,
 }];

@@ -34,6 +34,12 @@ export function Home({ navigation }: HomeProps) {
     navigation.navigate("Task");
   }
 
+  function navigateToTaskId(task: Task) {
+    navigation.navigate("Task", {
+      task,
+    });
+  }
+
   function onChangeFilter(slug: string) {
     setFilter(slug);
   }
@@ -58,6 +64,15 @@ export function Home({ navigation }: HomeProps) {
     getLateTasks();
   }, [filter]);
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      getTasks();
+      getLateTasks();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -78,6 +93,7 @@ export function Home({ navigation }: HomeProps) {
         tasks={tasks}
         loading={loading}
         filter={filter}
+        onNavigateToTaskId={navigateToTaskId}
       />
 
       <Footer

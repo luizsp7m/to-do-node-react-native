@@ -9,9 +9,10 @@ interface TodoListProps {
   tasks: Task[];
   loading: boolean;
   filter: string;
+  onNavigateToTaskId: (task: Task) => void;
 }
 
-export function TodoList({ tasks, loading, filter }: TodoListProps) {
+export function TodoList({ tasks, loading, filter, onNavigateToTaskId }: TodoListProps) {
   return (
     <>
       <Text style={styles.title}>{filter === "late" ? "Tarefas atrasadas" : "Tarefas"}</Text>
@@ -30,6 +31,7 @@ export function TodoList({ tasks, loading, filter }: TodoListProps) {
             <Todo
               key={task._id}
               task={task}
+              onNavigateToTaskId={onNavigateToTaskId}
             />
           ))
         )}

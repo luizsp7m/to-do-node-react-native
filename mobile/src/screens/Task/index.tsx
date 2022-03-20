@@ -6,12 +6,19 @@ import { Header } from "../../components/Header";
 import { styles } from "./styles";
 
 interface TaskProps {
-  navigation: any
+  navigation: any;
+  route: any;
 }
 
-export function Task({ navigation }: TaskProps) {
+export function Task({ route, navigation }: TaskProps) {
   function navigateToHome() {
-    navigation.navigate("Home");
+    navigation.push("Home");
+  }
+
+  let task = undefined;
+
+  if(route.params) {
+    task = route.params.task;
   }
 
   return (
@@ -26,7 +33,7 @@ export function Task({ navigation }: TaskProps) {
         navigateToHome={navigateToHome}
       />
 
-      <Form navigateToHome={navigateToHome} />
+      <Form navigateToHome={navigateToHome} task={task} />
 
       {/* <Footer icon="confirm" /> */}
     </View>
