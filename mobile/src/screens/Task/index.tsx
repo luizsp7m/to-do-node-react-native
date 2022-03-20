@@ -1,4 +1,5 @@
-import { KeyboardAvoidingView, ScrollView, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { View } from "react-native";
 import { Footer } from "../../components/Footer";
 import { Form } from "../../components/Form";
 import { Header } from "../../components/Header";
@@ -15,6 +16,8 @@ export function Task({ navigation }: TaskProps) {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="light" />
+
       <Header
         showQrCode={false}
         showNotification={false}
@@ -23,9 +26,9 @@ export function Task({ navigation }: TaskProps) {
         navigateToHome={navigateToHome}
       />
 
-      <Form />
+      <Form navigateToHome={navigateToHome} />
 
-      <Footer icon="confirm" />
+      {/* <Footer icon="confirm" /> */}
     </View>
   );
 }

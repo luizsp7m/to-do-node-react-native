@@ -4,23 +4,26 @@ import { Icons } from "../../utils/icons";
 
 import { styles } from "./styles";
 
-export function Categories() {
-  const [typeSelected, setTypeSelected] = useState<number | undefined>();
+interface CategoriesProps {
+  type: number | undefined;
+  onChangeType: (typeNumber: number) => void;
+}
 
+export function Categories({ type, onChangeType }: CategoriesProps) {
   return (
     <ScrollView
       style={styles.container}
       showsHorizontalScrollIndicator={false}
       horizontal={true}>
-      {Icons.map(type => (
+      {Icons.map(icon => (
         <TouchableOpacity
           style={styles.button}
-          key={type.id}
-          onPress={() => setTypeSelected(type.id)}
+          key={icon.id}
+          onPress={() => onChangeType(icon.id)}
         >
           <Image
-            source={type.image}
-            style={[styles.image, typeSelected === type.id ? styles.selected : styles.disabled]}
+            source={icon.image}
+            style={[styles.image, type !== undefined ? (type === icon.id ? styles.selected : styles.disabled) : styles.default ]}
           />
         </TouchableOpacity>
       ))}

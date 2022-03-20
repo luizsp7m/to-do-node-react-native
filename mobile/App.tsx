@@ -31,6 +31,7 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
+          headerShown: false,
           headerStyle: {
             backgroundColor: COLORS.PINK,
           },

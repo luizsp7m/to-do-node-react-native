@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
@@ -59,6 +60,8 @@ export function Home({ navigation }: HomeProps) {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="light" />
+
       <Header
         showQrCode={true}
         showNotification={true}

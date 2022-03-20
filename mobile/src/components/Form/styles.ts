@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
 
   content: {
-    paddingBottom: 50,
+    paddingBottom: 24,
   },
 
   group: {
@@ -89,5 +89,20 @@ export const styles = StyleSheet.create({
 
   dateText: {
     color: COLORS.WHITE,
+  },
+
+  buttonSubmit: {
+    height: 48,
+    backgroundColor: COLORS.PINK,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 4,
+    marginTop: 12,
+  },
+
+  textSubmit: {
+    fontSize: 16,
+    color: COLORS.WHITE,
+    fontFamily: FONTS.BOLD,
   },
 });
