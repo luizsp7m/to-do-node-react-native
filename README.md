@@ -4,6 +4,11 @@ Trata-se de um aplicativo que lista todas as tarefas cadastradas pelo usuário e
 
 ![](./design/design-preview.jpg)
 
+### Funcionalidades
+- Permite o usuário adicionar, atualizar e excluir tarefas
+- Permite o usuário filtrar tarefas por dia, mês e ano
+- Permite o usuário ver tarefas atrasadas
+
 ### Tecnologias
 - NodeJS
 - Express
